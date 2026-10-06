@@ -1,0 +1,16 @@
+INSERT INTO users (id, full_name, email, password_hash, role) VALUES
+('00000000-0000-0000-0000-000000000001','Admin EventHub','admin@eventhub.test','$2b$10$6119JOn8kLpUny3hLefdyeX5KtbmzBhq1PASGnOxroEOu0XPnWRwu','admin'),
+('00000000-0000-0000-0000-000000000002','Staff EventHub','staff@eventhub.test','$2b$10$6119JOn8kLpUny3hLefdyeX5KtbmzBhq1PASGnOxroEOu0XPnWRwu','staff');
+
+INSERT INTO events (id,title,description,location,event_date,max_participants,status,created_by) VALUES
+('10000000-0000-0000-0000-000000000001','React Summit Casablanca','Une journée dédiée à React et son écosystème.','Technopark Casablanca','2026-11-15 09:00+00',80,'published','00000000-0000-0000-0000-000000000001'),
+('10000000-0000-0000-0000-000000000002','Product Design Lab','Atelier pratique de design produit.','La Factory, Rabat','2026-11-22 10:00+00',30,'published','00000000-0000-0000-0000-000000000002'),
+('10000000-0000-0000-0000-000000000003','Node.js Meetup','Rencontres et retours d’expérience Node.js.','Hotel Farah, Marrakech','2026-12-05 18:30+00',60,'draft','00000000-0000-0000-0000-000000000001'),
+('10000000-0000-0000-0000-000000000004','Data & AI Forum','Conférences autour de l’intelligence artificielle.','UM6P, Benguerir','2026-12-12 09:30+00',120,'published','00000000-0000-0000-0000-000000000002'),
+('10000000-0000-0000-0000-000000000005','Tech Afterwork','Événement reporté.','Le Patio, Casablanca','2026-10-20 19:00+00',40,'cancelled','00000000-0000-0000-0000-000000000001');
+
+INSERT INTO participants (id,full_name,email,phone) VALUES
+('20000000-0000-0000-0000-000000000001','Amine El Idrissi','amine@example.test','+212600000001'),('20000000-0000-0000-0000-000000000002','Sara Bennani','sara@example.test','+212600000002'),('20000000-0000-0000-0000-000000000003','Youssef Alaoui','youssef@example.test',NULL),('20000000-0000-0000-0000-000000000004','Nadia Tazi','nadia@example.test',NULL),('20000000-0000-0000-0000-000000000005','Omar Chraibi','omar@example.test',NULL),('20000000-0000-0000-0000-000000000006','Lina Amrani','lina@example.test',NULL),('20000000-0000-0000-0000-000000000007','Mehdi Kabbaj','mehdi@example.test',NULL),('20000000-0000-0000-0000-000000000008','Aya El Fassi','aya@example.test',NULL),('20000000-0000-0000-0000-000000000009','Karim Bennis','karim@example.test',NULL),('20000000-0000-0000-0000-000000000010','Salma Ouazzani','salma@example.test',NULL);
+
+INSERT INTO registrations (event_id,participant_id,status) SELECT '10000000-0000-0000-0000-000000000001', id, CASE WHEN id IN ('20000000-0000-0000-0000-000000000003','20000000-0000-0000-0000-000000000007') THEN 'pending' ELSE 'confirmed' END FROM participants;
+INSERT INTO registrations (event_id,participant_id,status) SELECT '10000000-0000-0000-0000-000000000002', id, CASE WHEN id IN ('20000000-0000-0000-0000-000000000004','20000000-0000-0000-0000-000000000008') THEN 'cancelled' ELSE 'confirmed' END FROM participants WHERE id IN ('20000000-0000-0000-0000-000000000001','20000000-0000-0000-0000-000000000002','20000000-0000-0000-0000-000000000003','20000000-0000-0000-0000-000000000004','20000000-0000-0000-0000-000000000005','20000000-0000-0000-0000-000000000006','20000000-0000-0000-0000-000000000007','20000000-0000-0000-0000-000000000008','20000000-0000-0000-0000-000000000009','20000000-0000-0000-0000-000000000010');

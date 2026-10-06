@@ -1,0 +1,15 @@
+import { Router } from 'express';
+import authRoutes from './AuthRoutes.js';
+import eventRoutes from './EventRoutes.js';
+import participantRoutes from './Participants.js';
+import registrationRoutes from './Registrations.js';
+import dashboardRoutes from './DashboardRoutes.js';
+import userRoutes from './UserRoutes.js';
+const router = Router();
+router.use('/auth', authRoutes);
+router.use('/events', eventRoutes);
+router.use('/participants', participantRoutes);
+router.use('/registrations', registrationRoutes);
+router.use('/dashboard', dashboardRoutes);
+router.use('/users', userRoutes);
+export default router;

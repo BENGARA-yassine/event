@@ -1,0 +1,3 @@
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
+export async function api(path, token, options = {}) { const response = await fetch(`${BASE_URL}${path}`, { ...options, headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}), ...options.headers } }); const data = response.status === 204 ? null : await response.json(); if (!response.ok) throw new Error(data.message || 'Erreur serveur.'); return data; }
+export const date = (value) => new Intl.DateTimeFormat('fr-MA', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(value));
